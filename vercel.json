@@ -1,13 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "build/client",
+  "framework": "vite",
   "functions": {
     "build/server/**/*.js": {
-      "runtime": "nodejs22.x"
+      "runtime": "nodejs20.x"
     }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "/build/server/index.js" }
-  ]
+  }
 }
