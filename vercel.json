@@ -1,4 +1,4 @@
 {
   "version": 2,
-  "framework": "@vercel/react-router"
+  "framework": "react-router"
 }
