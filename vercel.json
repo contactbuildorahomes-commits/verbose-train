@@ -1,9 +1,4 @@
 {
   "version": 2,
-  "framework": "vite",
-  "functions": {
-    "build/server/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "framework": "@vercel/react-router"
 }
