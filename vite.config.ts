@@ -1,7 +1,6 @@
 import path from 'node:path';
 import { reactRouter } from '@react-router/dev/vite';
 import { defineConfig } from 'vite';
-import babel from 'vite-plugin-babel';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { addRenderIds } from './plugins/addRenderIds';
 import { aliases } from './plugins/aliases';
@@ -14,6 +13,7 @@ import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
 export default defineConfig(() => ({
   envPrefix: 'NEXT_PUBLIC_',
+
   build: {
     sourcemap: false,
     chunkSizeWarningLimit: 1000,
@@ -27,6 +27,7 @@ export default defineConfig(() => ({
       }
     }
   },
+
   optimizeDeps: {
     include: ['fast-glob'],
     exclude: [
@@ -40,19 +41,13 @@ export default defineConfig(() => ({
       'lucide-react'
     ]
   },
+
   logLevel: 'info',
+
   plugins: [
     nextPublicProcessEnv(),
     restartEnvFileChange(),
-    babel({
-      include: ['src/**/*.{js,jsx,ts,tsx}'],
-      exclude: /node_modules/,
-      babelConfig: {
-        babelrc: false,
-        configFile: false,
-        plugins: ['styled-jsx/babel']
-      }
-    }),
+
     restart({
       restart: [
         'src/**/page.jsx',
@@ -63,17 +58,22 @@ export default defineConfig(() => ({
         'src/**/route.ts'
       ]
     }),
+
     consoleToParent(),
     loadFontsFromTailwindSource(),
     addRenderIds(),
+
     reactRouter(),
+
     tsconfigPaths({
       ignoreConfigErrors: true,
       projects: [path.resolve(__dirname, 'tsconfig.json')]
     }),
+
     aliases(),
     layoutWrapperPlugin()
   ],
+
   resolve: {
     alias: {
       lodash: 'lodash-es',
@@ -81,10 +81,13 @@ export default defineConfig(() => ({
     },
     dedupe: ['react', 'react-dom']
   },
+
   ssr: {
     external: ['lucide-react']
   },
+
   clearScreen: false,
+
   server: {
     allowedHosts: true,
     host: '0.0.0.0',
@@ -93,7 +96,11 @@ export default defineConfig(() => ({
       overlay: false
     },
     warmup: {
-      clientFiles: ['./src/app/**/*', './src/app/root.tsx', './src/app/routes.ts']
+      clientFiles: [
+        './src/app/**/*',
+        './src/app/root.tsx',
+        './src/app/routes.ts'
+      ]
     }
   }
 }));
