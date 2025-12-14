@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "motion";
 import { login } from "@/firebase/auth";
 
 export const meta = () => [
